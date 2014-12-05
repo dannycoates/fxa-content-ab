@@ -1,8 +1,9 @@
 var ab = require('../')
 var assert = require('assert')
 
-assert.ok(ab.isEnabled('avatar', 'me@mozilla.com'))
-assert.ok(ab.report()['avatar'].choice)
+ab.subject.email = 'me@mozilla.com'
+assert.ok(ab.isEnabled('avatar'))
+assert.ok(ab.report()[0].choice)
 
-assert.ok(ab.isEnabled('avatar', 'you@mozilla.org'))
-assert.ok(!ab.isEnabled('avatar', 'me@gmail.com'))
+assert.ok(ab.isEnabled('avatar', { email: 'you@mozilla.org' }))
+assert.ok(!ab.isEnabled('avatar', { email: 'me@gmail.com' }))
